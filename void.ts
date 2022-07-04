@@ -6,17 +6,22 @@ interface Joke{
     status? : number;
 }
 
-async function makeJoke() {
+async function letsJoke(){
+    
+    const joke : string = await makeJoke().then(req => req.joke);
+    
+    const textUser:HTMLBodyElement = document.getElementById("joke") as HTMLBodyElement;
+    textUser.innerHTML= joke;
+      
+} 
 
-   try{
-        const request: Joke = await fetch(APIJOKE,{headers: {'Accept': 'application/json'}})
-        .then((res) => res.json())
+async function makeJoke() : Promise<Joke> {
+
+    const request: Joke = await fetch(APIJOKE,{headers: {'Accept': 'application/json'}})
+    .then((res) => res.json())
              
-        //console.log("hola" + request);
-        return request;
-          
-    } catch(error){
-        console.log("Error= " + error);
-    }          
+    return request;
 }
+       
+
 
