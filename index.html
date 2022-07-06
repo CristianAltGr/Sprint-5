@@ -5,26 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/1f28589abd.js" crossorigin="anonymous"></script>
     <title>Morning joke's</title>
 </head>
 <body>
-    <div id="container">
-        <header id="weather">
-
-        </header>
-        <div class="card">
-            <h2 id="joke"></h2>
-            <button id="button" type="button" onclick="letsJoke()"> Tell me a joke! </button>
-        </div>   
-        <div class="section">
-            <div class="feedback">
-                <!--<button class="rank" id="note1"></button>
-                <button class="rank" id="note2"></button>
-                <button class="rank" id="note3"></button>-->
-            </div>
+    
+    <header id="weather">
+        <h3 class="textweather"> The weather today is: ...</h3>
+    </header>
+    <div class="card">
+        <h1 class="h1"> Ready for joking?...</h1>
+        <h3 id="joke"></h3>
+        <button id="button" type="button" onclick="letsJoke()"> Tell me a joke! </button>
+    </div>   
+    <div class="section">
+        <h4 class="textFeedback">You like that joke?</h4>
+        <div class="feedback">
+            <button type="radio" class="rank" id="note1"><i class="fa-solid fa-thumbs-down fa-color" ></i></button>
+            <button type="radio" class="rank" id="note2"><i class="fa-solid fa-equals fa-color"></i></button>
+            <button type="radio" class="rank" id="note3"><i class="fa-solid fa-thumbs-up fa-color"></i></button>
         </div>
     </div>
-    
+        
     <script src="src/void.js"></script>
 </body>
 </html>

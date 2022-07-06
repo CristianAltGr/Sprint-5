@@ -4,27 +4,50 @@
 }
 
 body{
-    max-width: 1200px;
-    display: flex;
-    justify-content: center;
-    align-content:center;
-    text-align: center;
-    background-image: url();
-}
-
-#container{
+   /*ERROR DISPLAY CORREGiR ANCHO I DECIDIR U+N DISPLAY con griid funciona ok, mirar tmb ancho card al no ser responsive*/
+   
+    background-image: url(vsc/party.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
     display: grid;
-    grid-template-rows: 1fr 1fr ;
+    grid-template-rows: 5% 65% 30% ;
+    
 }
 
+header{
+    background-color: white;
+    margin: auto;
+    padding: 10px;
+    height: 70px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;    
+}
 
+.card{
+    width: 80%;
+    height: 250px;
+    margin-top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 1em;
+    background-color: white;
+    box-shadow: 3px;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-
-.button {
-    width: 9em;
+#button {
+    cursor: pointer;
+    width: 8em;
     height: 3em;
     border-radius: 30em;
-    font-size: 30px;
+    font-size: 20px;
     border: none;
     position: relative;
     overflow: hidden;
@@ -33,7 +56,7 @@ body{
                 -6px -6px 12px #ffffff;
    }
    
-.button::before {
+#button::before {
     content: '';
     width: 0;
     height: 3em;
@@ -47,14 +70,54 @@ body{
     z-index: -1;
 }
    
-.button:hover::before {
+#button:hover::before {
     width: 9em;
+}
+
+.section{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    flex-direction: column;
 }
 
 .feedback{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 70%;
+    justify-content: space-around;
+    padding: 5px;    
 }
 
+.feedback button{
+    border-radius: 50em;
+    border-style: none;
+    width: auto;
+    background-color: rgba(245, 222, 179, 0);
+    
+}
 
+i{
+  display: flex;
+  cursor: pointer;
+  font-size: 11vh;
+}
+.fa-color{
+    color: #202455;
+}
+
+.fa-color:hover{
+    color: #cfc840;
+    font-size: 12vh;
+    transition: .5s ease;
+}
+
+@media(max-width: 450px){
+ 
+h1{
+    text-align: center;
+} 
+ 
+.card{
+    height: 400px;
+}
+}
