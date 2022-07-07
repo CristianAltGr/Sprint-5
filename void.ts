@@ -1,28 +1,19 @@
 const APIJOKE = 'https://icanhazdadjoke.com';
 const KEYWEATHER = "BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi";
 const APIWEATHER = 'https://api.tomorrow.io/v4/timelines?location=41.3873974,2.168568&fields=temperature,precipitationType,precipitationProbability,humidity,windSpeed&timesteps=current&units=metric&apikey=BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi'
+const APINORRIS  = 'https://api.chucknorris.io/jokes/random';
 
 //Legend: Joke = interface
 //        JOKE = Class
 //        joke = variable with interface Joke for take info
 //        jokes= array of JOKE objects (plus: inside the object save the score inside other array)
 
-//timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
+timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
 
 const jokes : JOKE[] = [];
 
 async function letsJoke(){
-    
-    const choice = (): boolean =>  {
-        
-        const aux : number = Math.random()*100;
-        if(aux<=50){
-            return false
-        } else{
-            return true
-        }
-    }
-       
+           
     const joke : Joke = await makeJoke().then(req => req);    
     const stringJoke : string = joke.joke;
     const textUser:HTMLBodyElement = document.getElementById("joke") as HTMLBodyElement;
@@ -34,15 +25,32 @@ async function letsJoke(){
 
 async function makeJoke() : Promise<Joke> {
 
-    const request: Joke = await fetch(APIJOKE,{headers: {'Accept': 'application/json'}})
-    .then((res) => res.json())
+    let choice : boolean;
+    const aux : number = Math.random()*100;
+    
+    if(aux>=50){
+        choice = false; 
+    } else{
+        choice = true; 
+    }
+      
+    if(choice===true){
+        const request: Joke = await fetch(APIJOKE,{headers: {'Accept': 'application/json'}})
+        .then((res) => res.json())
              
-    return request;
+        return request;
+    
+    }else{
+        const request = await fetch(APINORRIS).then(res => res.json());
+        const joke : Joke = {
+            id: request.id,
+            joke: request.value,
+        }
+
+        return joke;
+    }    
 }
 
-async function chuckDontJoke(){
-
-}
 
 function pushJoke(joke : Joke){
     

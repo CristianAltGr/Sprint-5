@@ -35,8 +35,8 @@ interface BcnWeather{
 }
 
 interface Joke{
-    id     : string;
-    joke   : string;
+    id      : string;
+    joke    : string;
     status? : number;
 }
 

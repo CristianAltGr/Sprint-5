@@ -11,23 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const APIJOKE = 'https://icanhazdadjoke.com';
 const KEYWEATHER = "BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi";
 const APIWEATHER = 'https://api.tomorrow.io/v4/timelines?location=41.3873974,2.168568&fields=temperature,precipitationType,precipitationProbability,humidity,windSpeed&timesteps=current&units=metric&apikey=BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi';
+const APINORRIS = 'https://api.chucknorris.io/jokes/random';
 //Legend: Joke = interface
 //        JOKE = Class
 //        joke = variable with interface Joke for take info
 //        jokes= array of JOKE objects (plus: inside the object save the score inside other array)
-//timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
+timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
 const jokes = [];
 function letsJoke() {
     return __awaiter(this, void 0, void 0, function* () {
-        const choice = () => {
-            const aux = Math.random() * 100;
-            if (aux <= 50) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        };
         const joke = yield makeJoke().then(req => req);
         const stringJoke = joke.joke;
         const textUser = document.getElementById("joke");
@@ -38,13 +30,27 @@ function letsJoke() {
 }
 function makeJoke() {
     return __awaiter(this, void 0, void 0, function* () {
-        const request = yield fetch(APIJOKE, { headers: { 'Accept': 'application/json' } })
-            .then((res) => res.json());
-        return request;
-    });
-}
-function chuckDontJoke() {
-    return __awaiter(this, void 0, void 0, function* () {
+        let choice;
+        const aux = Math.random() * 100;
+        if (aux >= 50) {
+            choice = false;
+        }
+        else {
+            choice = true;
+        }
+        if (choice === true) {
+            const request = yield fetch(APIJOKE, { headers: { 'Accept': 'application/json' } })
+                .then((res) => res.json());
+            return request;
+        }
+        else {
+            const request = yield fetch(APINORRIS).then(res => res.json());
+            const joke = {
+                id: request.id,
+                joke: request.value,
+            };
+            return joke;
+        }
     });
 }
 function pushJoke(joke) {
