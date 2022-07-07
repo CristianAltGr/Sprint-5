@@ -13,7 +13,9 @@ timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
 const jokes : JOKE[] = [];
 
 async function letsJoke(){
-           
+    
+    animationBg(); //Change de blob
+
     const joke : Joke = await makeJoke().then(req => req);    
     const stringJoke : string = joke.joke;
     const textUser:HTMLBodyElement = document.getElementById("joke") as HTMLBodyElement;
@@ -123,6 +125,49 @@ async function timeToday(){
 
     tempDoc.innerHTML = temperature;
     rainDoc.innerHTML = rain;
-    windDoc.innerHTML = wind;    
+    windDoc.innerHTML = wind;   
+    
+    bgWeather(weather.values.temperature , weather.values.precipitationProbability ); 
+    // Function to change bg image with the time outside.
 }
 
+function animationBg(){
+
+    const images : string[] = [
+        'url(vsc/blob.svg)',
+        'url(vsc/blob1.svg)',
+        'url(vsc/blob2.svg)',
+        'url(vsc/blob3.svg)',
+        'url(vsc/blob4.svg)',
+        'url(vsc/blob5.svg)',
+        'url(vsc/blob6.svg)',
+        'url(vsc/blob7.svg)'
+    ]
+
+    const container = <HTMLElement>document.querySelector(".container") ;
+    const bg = images[Math.floor(Math.random()*images.length)];
+    container.style.backgroundImage= bg; 
+}
+
+function bgWeather(temperature : number,rainProba: number){
+    
+    let bg : string = "url(vsc/party.jpg)";
+    const imgHot : string = 'url(vsc/beach.jpg)'; 
+    const imgCold : string = 'url(vsc/winter.jpg)'; 
+    const imgGood : string = 'url(vsc/spring.jpg)'; 
+    const imgRain : string = 'url(vsc/rain.jpg)'; 
+
+    const container = <HTMLElement>document.querySelector("body") ;
+    
+    if(rainProba > 50){
+        bg = imgRain;
+    }else if (temperature >= 26){
+        bg = imgHot; 
+    }else if (temperature < 26 && temperature >= 16){
+        bg = imgGood;
+    }else if(temperature < 16){
+        bg = imgCold; 
+    }
+    
+    container.style.backgroundImage= bg; 
+}

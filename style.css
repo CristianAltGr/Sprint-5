@@ -3,18 +3,34 @@
 *{
     font-family:Arial, Helvetica, sans-serif;
 }
-/*Exercice 6, refactor js change blops and check jokes sections, changes the bg wheater ?? change emoticons?*/
-body{  
+
+h3{
+    background-color: rgba(247, 95, 128, 0.781);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+
+body{
     background-image: url(vsc/party.jpg);
     background-size: cover;
     background-repeat:no-repeat;
     background-attachment: fixed;
+}
+
+.container{  
     display: grid;
     grid-template-rows: 5% 65% 30% ;
-    }
+    background-image: url(vsc/blob.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 55%;
+    position: relative;
+}
 
 header{
     background-color: white;
+    opacity: 0.8;
     margin: auto;
     padding: 10px;
     height: 70px;
@@ -23,8 +39,6 @@ header{
     grid-template-columns: 1fr 3fr 3fr 3fr;
     border-radius: 20px;    
 }
-
-
 
 header i{
     font-size: 9vh;
@@ -59,8 +73,6 @@ header div:nth-child(4){
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
-    padding: 1em;
-    background-color: white;
     box-shadow: 3px;  
     display: flex;
     flex-direction: column;
@@ -132,34 +144,38 @@ header div:nth-child(4){
 }
 
 .fa-color:hover{
-    color: #cfc840;
+    color: #dad127;
     font-size: 12vh;
-    transition: .5s ease;
+    transition: .3s ease;
+}
+
+.fa-color::before{
+        transition: .3s ease;
 }
 
 @media(max-width: 450px){
  
-h1{
-    text-align: center;
-} 
- 
-.card{
-    height: 400px;
-}
+    h1{
+        text-align: center;
+    } 
+    
+    .card{
+        height: 400px;
+    }
 
-.textweather{
-    display: none;
-}
+    .textweather{
+        display: none;
+    }
 
-header{
-    grid-template-columns: 2fr 2fr 2fr
-}
+    header{
+        grid-template-columns: 2fr 2fr 2fr
+    }
 
-header i{
-    font-size: 5vh;
-}
+    header i{
+        font-size: 5vh;
+    }
 
-.section i{
-    font-size: 8vh;
-}
+    .section i{
+        font-size: 8vh;
+    }
 }
