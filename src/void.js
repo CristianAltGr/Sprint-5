@@ -9,9 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const APIJOKE = 'https://icanhazdadjoke.com';
+const KEYWEATHER = "BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi";
+const APIWEATHER = 'https://api.tomorrow.io/v4/timelines?location=41.3873974,2.168568&fields=temperature,precipitationType,precipitationProbability,humidity,windSpeed&timesteps=current&units=metric&apikey=BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi';
+//Legend: Joke = interface
+//        JOKE = Class
+//        joke = variable with interface Joke for take info
+//        jokes= array of JOKE objects (plus: inside the object save the score inside other array)
+//timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
 const jokes = [];
 function letsJoke() {
     return __awaiter(this, void 0, void 0, function* () {
+        const choice = () => {
+            const aux = Math.random() * 100;
+            if (aux <= 50) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        };
         const joke = yield makeJoke().then(req => req);
         const stringJoke = joke.joke;
         const textUser = document.getElementById("joke");
@@ -25,6 +41,10 @@ function makeJoke() {
         const request = yield fetch(APIJOKE, { headers: { 'Accept': 'application/json' } })
             .then((res) => res.json());
         return request;
+    });
+}
+function chuckDontJoke() {
+    return __awaiter(this, void 0, void 0, function* () {
     });
 }
 function pushJoke(joke) {
@@ -63,6 +83,22 @@ function punctuateJokes(num) {
                 joke.setScores = score;
             }
         });
+        alert("Thanks for your vote!");
     }
     console.log(jokes);
+}
+function timeToday() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(APIWEATHER).then(res => res.json());
+        const weather = response.data.timelines[0].intervals[0]; //Destructuring object 
+        const tempDoc = document.getElementById("temp");
+        const rainDoc = document.getElementById("rain");
+        const windDoc = document.getElementById("wind");
+        const temperature = weather.values.temperature + "º";
+        const rain = weather.values.precipitationProbability + "%";
+        const wind = weather.values.windSpeed + " m/s";
+        tempDoc.innerHTML = temperature;
+        rainDoc.innerHTML = rain;
+        windDoc.innerHTML = wind;
+    });
 }

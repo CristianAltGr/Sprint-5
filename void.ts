@@ -1,22 +1,29 @@
 const APIJOKE = 'https://icanhazdadjoke.com';
+const KEYWEATHER = "BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi";
+const APIWEATHER = 'https://api.tomorrow.io/v4/timelines?location=41.3873974,2.168568&fields=temperature,precipitationType,precipitationProbability,humidity,windSpeed&timesteps=current&units=metric&apikey=BkMrzeAO6mSJDnoYFfYM6DJMKwTt67qi'
 
 //Legend: Joke = interface
 //        JOKE = Class
 //        joke = variable with interface Joke for take info
 //        jokes= array of JOKE objects (plus: inside the object save the score inside other array)
 
-interface Joke{
-    id     : string;
-    joke   : string;
-    status : number;
-}
-
+//timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
 
 const jokes : JOKE[] = [];
 
 async function letsJoke(){
     
-    const joke : Joke = await makeJoke().then(req => req);
+    const choice = (): boolean =>  {
+        
+        const aux : number = Math.random()*100;
+        if(aux<=50){
+            return false
+        } else{
+            return true
+        }
+    }
+       
+    const joke : Joke = await makeJoke().then(req => req);    
     const stringJoke : string = joke.joke;
     const textUser:HTMLBodyElement = document.getElementById("joke") as HTMLBodyElement;
     textUser.innerHTML= stringJoke;
@@ -31,6 +38,10 @@ async function makeJoke() : Promise<Joke> {
     .then((res) => res.json())
              
     return request;
+}
+
+async function chuckDontJoke(){
+
 }
 
 function pushJoke(joke : Joke){
@@ -83,13 +94,27 @@ function  punctuateJokes(num:number){
                 
             }
         })
-
+        
+        alert("Thanks for your vote!");
     }
-
     console.log (jokes)
 }
 
+async function timeToday(){
 
-       
+    const response : Weather = await fetch(APIWEATHER).then( res => res.json());
+    const weather : BcnWeather = response.data.timelines[0].intervals[0]; //Destructuring object 
+    
+    const tempDoc :HTMLBodyElement = document.getElementById("temp") as HTMLBodyElement;
+    const rainDoc :HTMLBodyElement = document.getElementById("rain") as HTMLBodyElement;
+    const windDoc :HTMLBodyElement = document.getElementById("wind") as HTMLBodyElement;
 
+    const temperature : any = weather.values.temperature + "º";
+    const rain : any = weather.values.precipitationProbability + "%";
+    const wind :any  = weather.values.windSpeed + " m/s";
+
+    tempDoc.innerHTML = temperature;
+    rainDoc.innerHTML = rain;
+    windDoc.innerHTML = wind;    
+}
 
