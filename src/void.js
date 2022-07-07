@@ -136,7 +136,7 @@ function bgWeather(temperature, rainProba) {
     if (rainProba > 50) {
         bg = imgRain;
     }
-    else if (temperature >= 26) {
+    else if (temperature >= 25) {
         bg = imgHot;
     }
     else if (temperature < 26 && temperature >= 16) {
