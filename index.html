@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/1f28589abd.js" crossorigin="anonymous"></script>
+    <title>Morning joke's</title>
+</head>
+<body>
+    <div class="container">
+        <header id="weather">
+            <h4 class="textweather"> Today: </h4>
+            <div><i class="fa-solid fa-temperature-half"></i><p id="temp"></p></div>
+            <div><i class="fa-solid fa-cloud-rain"></i><p id="rain"></p></div>
+            <div><i class="fa-solid fa-wind"></i><p id="wind"></p></div>
+        </header>
+        <div class="card">
+            <h1 class="h1"> Ready for joking?...</h1>
+            <h3 id="joke"></h3>
+            <button id="button" type="button" onclick="letsJoke()"> Tell me a joke! </button>
+        </div>   
+        <div class="section">
+            <h4 class="textFeedback">You like that joke?</h4>
+            <div class="feedback">
+                <button type="button" onclick="punctuateJokes(1)" class="rank" id="note1"><i class="fa-solid fa-thumbs-down fa-color" ></i></button>
+                <button type="button" onclick="punctuateJokes(2)" class="rank" id="note2"><i class="fa-solid fa-equals fa-color"></i></button>
+                <button type="button" onclick="punctuateJokes(3)" class="rank" id="note3"><i class="fa-solid fa-thumbs-up fa-color"></i></button>
+            </div>
+        </div>
+    </div>
+    <script src="src/class.js"></script>    
+    <script src="src/void.js"></script>
+</body>
+</html>
