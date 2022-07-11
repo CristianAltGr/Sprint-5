@@ -16,7 +16,7 @@ const APINORRIS = 'https://api.chucknorris.io/jokes/random';
 //        JOKE = Class
 //        joke = variable with interface Joke for take info
 //        jokes= array of JOKE objects (plus: inside the object save the score inside other array)
-//timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
+timeToday(); // IMPORTANT! Function to know the time limited 25 gettings/hour!!
 const jokes = [];
 function letsJoke() {
     return __awaiter(this, void 0, void 0, function* () {
